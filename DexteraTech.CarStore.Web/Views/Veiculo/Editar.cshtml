@@ -1,0 +1,189 @@
+﻿@model VeiculoInputModel
+@{
+    ViewData["Title"] = "Veiculo";
+    ViewData["SubTitle"] = "Edição";
+}
+
+<div >
+
+    <div class="row">
+        <form asp-controller="Veiculo" asp-action="Editar" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="IdVeiculo"/>
+
+                    <div class="row">
+
+                        <div class="col">
+                            <label asp-for="IdMarca" class="form-label"></label>
+                            <select name="IdMarca" asp-for="IdMarca " class="form-control" asp-items="@(new SelectList(ViewBag.IdMarca, "Value", "Text"))"></select>
+                            <span asp-validation-for="IdMarca" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="col">
+                            <label asp-for="IdModelo" class="form-label"></label>
+                            <select name="IdModelo" asp-for="IdModelo " class="form-control" asp-items="@(new SelectList(ViewBag.IdModelo, "Value", "Text"))"></select>
+                            <span asp-validation-for="IdModelo" class="text-danger"></span>
+                        </div>
+
+                        <div class="col">
+                            <label asp-for="IdVersao" class="form-label"></label>
+                            <select name="IdVersao" asp-for="IdVersao " class="form-control" asp-items="@(new SelectList(ViewBag.IdVersao, "Value", "Text"))"></select>
+                            <span asp-validation-for="IdVersao" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col">
+                                <label asp-for="IdCambio" class="form-label"></label>
+                                <select name="IdCambio" asp-for="IdCambio " class="form-control" asp-items="@(new SelectList(ViewBag.IdCambio, "Value", "Text"))"></select>
+                                <span asp-validation-for="IdCambio" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col">
+                                <label asp-for="IdCor" class="form-label"></label>
+                                <select name="IdCor" asp-for="IdCor " class="form-control" asp-items="@(new SelectList(ViewBag.IdCor, "Value", "Text"))"></select>
+                                <span asp-validation-for="IdCor" class="text-danger"></span>
+                            </div>
+                            <div class="col">
+                                <label asp-for="AnoFabricacao" class="form-label"></label>
+                                <input type="number" asp-for="AnoFabricacao" class="form-control">
+                                <span asp-validation-for="AnoFabricacao" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <label asp-for="AnoModelo" class="form-label"></label>
+                                <input type="number" asp-for="AnoModelo" class="form-control">
+                                <span asp-validation-for="AnoModelo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label asp-for="Placa" class="form-label"></label>
+                                <input type="text" asp-for="Placa" class="form-control" placeholder="AAA0A00">
+                                <span asp-validation-for="Placa" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <label asp-for="Ipva" class="form-label"></label>
+                                <select name="Ipva" asp-for="Ipva " class="form-control" asp-items="@(new SelectList(ViewBag.SimNao, "Value", "Text"))"></select>
+                                <span asp-validation-for="Ipva" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <label asp-for="Licenciado" class="form-label"></label>
+                                <select name="Licenciado" asp-for="Licenciado " class="form-control" asp-items="@(new SelectList(ViewBag.SimNao, "Value", "Text"))"></select>
+                                <span asp-validation-for="Licenciado" class="text-danger"></span>
+                            </div>
+
+                            <div class="col">
+                                <label asp-for="VlrVeiculo" class="form-label"></label>
+                                <input type="number" asp-for="VlrVeiculo" class="form-control" placeholder="0">
+                                <span asp-validation-for="VlrVeiculo" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col">
+                                <label asp-for="ExibirVitrine" class="form-label"></label>
+                                <select name="ExibirVitrine" asp-for="ExibirVitrine " class="form-control" asp-items="@(new SelectList(ViewBag.SimNao, "Value", "Text"))"></select>
+                                <span asp-validation-for="ExibirVitrine" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                    <label asp-for="Observacoes" class="form-label">Observações</label>
+                                    <textarea asp-for="Observacoes" class="form-control" rows="4"></textarea>
+                                    <span asp-validation-for="Observacoes" class="text-danger"></span>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="btn-group float-end" role="group" aria-label="Basic outlined example">
+                                    <a class="btn btn-outline-secondary" asp-controller="Veiculo" asp-action="Index">Voltar </a>
+                                    <button type="submit" class="btn btn-success">Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </form>
+
+
+    </div>
+
+    @if (Model.IdVeiculo > 0)
+    {
+        <hr />
+        <div class="row mt-3">
+
+            <form asp-controller="Veiculo" asp-action="UploadImages" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="IdVeiculo"/>
+
+
+                <h3 class="title mb-3">Fotos</h3>
+          
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="input-group">
+                                    <label asp-for="Imagens" class="input-group-text"></label>
+                                    <input asp-for="Imagens" accept="image/png, image/gif, image/jpeg" class="form-control" aria-describedby="Imagens" aria-label="Upload"/>
+                                    <button type="submit" class="btn btn-success">Salvar Imagens</button>
+                                    <span asp-validation-for="Imagens" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            @if (Model.Fotos.Any())
+                            {
+                                <div class="row" id="thumbholder">
+
+                                    @foreach (var item in Model.Fotos)
+                                    {
+                                        <div class="col-3">
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    @{
+                                                        var base64 = Convert.ToBase64String(item.Imagen);
+                                                        var Image = String.Format("data:image/gif;base64,{0}", base64);
+                                                    }
+                                                    <img src="@Image" alt="" class="img-fluid">
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="d-grid gap-2">
+                                                        <button class="btn btn-outline-danger btn-sm" onclick="VeiculoEditView.excluirImagem($(this))" data-idfoto="@item.IdFoto" data-idveiculo="@item.IdVeiculo" type="button">Excluir</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            }
+                        </div>
+            </form>
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    <SCRIPT>
+        var url_Listar_Marca_Modelo = '@Url.Action("ListarMarcaModelo", "Veiculo")';
+        var url_Listar_Modelo_Versao = '@Url.Action("ListarModeloVersao", "Veiculo")';
+    </SCRIPT>
+    <script src="~/js/marcamodelo.js"></script>
+    <script src="~/js/modeloversao.js"></script>
+    <script src="~/js/views/veiculo/edit.js"></script>
+
+    <script>
+        VeiculoEditView.urlUploadImagem = '@Url.Action("UploadImages")';
+        VeiculoEditView.urlExcluirFoto = '@Url.Action("ExcluirFoto")';
+    </script>
+
+
+}

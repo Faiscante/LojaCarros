@@ -1,0 +1,63 @@
+﻿@model DexteraTech.CarStore.Web.Models.VeiculoViewModel
+@{
+    ViewData["Title"] = "Estoque";
+    ViewData["Title"] = "Detalhes";
+    Layout = "_LayoutPublic";
+}
+
+<div class="text-center">
+        <body>
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 my-5">
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+
+                        <div class="col-md-6">
+                            <div id="meuCarrossel" class="carousel slide" data-bs-ride="carousel" style="max-width: 100%;">
+                                <div class="carousel-inner">
+                                    @foreach (var item in Model.Fotos)
+                                    {
+                                        <div class="carousel-item @(item == Model.Fotos.First() ? "active" : "")">
+                                            @{
+                                                var base64 = Convert.ToBase64String(item.Imagen);
+                                                var Image = String.Format("data:image/gif;base64,{0}", base64);
+                                            }
+                                            <img src='@Image' class="d-block w-100" alt="Imagem do Veículo" style="max-width: 100%;">
+                                        </div>
+                                    }
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#meuCarrossel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#meuCarrossel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Próxima</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h1 class="display-5 fw-bolder">
+                                @Model.IdVersaoNavigation.IdModeloNavigation.IdMarcaNavigation.NmMarca
+                                @Model.IdVersaoNavigation.IdModeloNavigation.NmModelo
+                                @Model.IdVersaoNavigation.NmVersao
+                            </h1>
+                            <div class="fs-5 mb-5">
+                                <h2>@Model.VlrVeiculo.ToString("C02")</h2>
+                            </div>
+                            <p class="lead text-wrap">@Model.Observacoes</p>
+                            <button type="submit" class="btn btn-info font-weight-medium rounded-pill px-4 mt-3">
+                                <div class="d-flex align-items-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send feather-sm fill-white me-2">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                    Contatar
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </body>
+</div>

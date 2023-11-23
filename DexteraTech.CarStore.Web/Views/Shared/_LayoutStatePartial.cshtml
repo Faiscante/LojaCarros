@@ -1,0 +1,33 @@
+﻿﻿@using DexteraTech.CarStore.Web.Extensions
+
+@if (TempData["AppMessage"] != null)
+{
+    var icon = "";
+    var color = "";
+
+    var message = TempData.Get<AppMessageModel>("AppMessage");
+    switch (message.State)
+    {
+        case Enums.State.Success:
+            icon = "check-circle";
+            color = "success";
+            break;
+        case Enums.State.Information:
+            icon = "info-circle";
+            color = "info";
+            break;
+        case Enums.State.Error:
+            icon = "exclamation-circle";
+            color = "danger";
+            break;
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+
+    <div class="alert alert-@color">
+        <span class="fa fa-@icon"></span> @message.Message
+    </div>
+
+
+    TempData.Peek("AppMessage");
+}

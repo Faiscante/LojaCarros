@@ -1,0 +1,73 @@
+﻿@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["AddUrlAction"] = Url.Action("Editar", "Cambio");
+}
+
+<body>
+    <div class="text-center">
+
+        <div class="row">
+            <!-- column -->
+            <div class="col-sm-12 align-self-center">
+                <div class="container my-4">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body">
+                                    <h5 class="card-title">Carrocerias Cadastradas</h5>
+                                    <p class="card-text">@Model.QtdCarrocerias</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-white bg-success">
+                                <div class="card-body">
+                                    <h5 class="card-title">Câmbios Cadastrados</h5>
+                                    <p class="card-text">@Model.QtdCambios</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-white bg-info">
+                                <div class="card-body">
+                                    <h5 class="card-title">Veículos Cadastrados</h5>
+                                    <p class="card-text">@Model.QtdVeiculos</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card text-white bg-warning">
+                                <div class="card-body">
+                                    <h5 class="card-title">Valor Total dos Veículos</h5>
+                                    <p class="card-text">@Model.VlrTotalVeiculos.ToString("C02")</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card text-white bg-danger">
+                                <div class="card-body">
+                                    <h5 class="card-title">Veículos Disponíveis para Venda</h5>
+                                    <p class="card-text">@Model.QtdVeiculosVendas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @section Scripts {
+        <script src="~/js/views/Cambio/Index.js"></script>
+        <script>
+            CambioIndexView.urlExcluirCambio = '@Url.Action("ExcluirCambio")';
+        </script>
+    }
+
+</body>

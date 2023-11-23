@@ -1,0 +1,38 @@
+﻿@model VersaoInputModel
+@{
+    ViewData["Title"] = "Versão";
+    ViewData["SubTitle"] = "Edição";
+    ViewData["AddUrlAction"] = Url.Action("Editar", "Versao");
+}
+
+<div>
+
+    <div class="row">
+        <form asp-controller="Versao" asp-action="Editar" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="IdVersao" />
+            <div class="row">
+
+                <div class="col">
+                    <label asp-for="IdModelo" class="form-label">Modelo</label>
+                    <select name="IdModelo" asp-for="IdModelo " class="form-control" asp-items="@(new SelectList(ViewBag.IdModelo, "Value", "Text"))"></select>
+                    <span asp-validation-for="IdModelo" class="text-danger"></span>
+                </div>
+                    <div class="col">
+                        <label asp-for="NmVersao" class="form-label">Versao</label>
+                        <input type="text" asp-for="NmVersao" class="form-control">
+                        <span asp-validation-for="NmVersao" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="btn-group float-end" role="group" aria-label="Basic outlined example">
+                        <a class="btn btn-outline-secondary" asp-controller="Versao" asp-action="Index">Voltar </a>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,48 @@
+﻿@model ModeloInputModel
+@{
+    ViewData["Title"] = "Modelo";
+    ViewData["SubTitle"] = "Edição";
+}
+
+<div>
+
+    <div class="row">
+        <form asp-controller="Modelo" asp-action="Editar" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="IdModelo" />
+            <div class="row">
+
+                <div class="col">
+                    <label asp-for="IdMarca" class="form-label"></label>
+                    <select name="IdMarca" asp-for="IdMarca " class="form-control" asp-items="@(new SelectList(ViewBag.IdMarca, "Value", "Text"))"></select>
+                    <span asp-validation-for="IdMarca" class="text-danger"></span>
+                </div>
+
+                <div class="col">
+                    <label asp-for="IdCarroceria" class="form-label">Carroceria</label>
+                    <select name="IdCarroceria" asp-for="IdCarroceria " class="form-control" asp-items="@(new SelectList(ViewBag.IdCarroceria, "Value", "Text"))"></select>
+                    <span asp-validation-for="IdCarroceria" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="NmModelo" class="form-label">Modelo</label>
+                        <input type="text" asp-for="NmModelo" class="form-control">
+                        <span asp-validation-for="NmModelo" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="btn-group float-end" role="group" aria-label="Basic outlined example">
+                        <a class="btn btn-outline-secondary" asp-controller="Modelo" asp-action="Index">Voltar </a>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,66 @@
+﻿@model List<DexteraTech.CarStore.Web.Models.VeiculoViewModel>
+@{
+    ViewData["Title"] = "Estoque";
+    ViewData["SubTitle"] = "Listagem";
+    Layout = "_LayoutPublic";
+}
+
+<body>
+    <div class="text-center">
+
+        <div class="row">
+            <div class="col-sm-12 align-self-center">
+
+                <div class="row">
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            foreach (var veiculo in Model)
+                            {
+                                <div class="col-lg-4 col-md-7">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @foreach (var item in veiculo.Fotos)
+                                            {
+                                                <div class="carousel-item @(item == veiculo.Fotos.First() ? "active" : "")">
+                                                    @{
+                                                        var base64 = Convert.ToBase64String(item.Imagen);
+                                                        var Image = String.Format("data:image/gif;base64,{0}", base64); 
+                                                    }
+                                                    <img src='@Image' class="d-block w-100" alt="Imagem do Veículo"> 
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+
+                                    <h5 class="card-title">@veiculo.IdVersaoNavigation.IdModeloNavigation.IdMarcaNavigation.NmMarca</h5>
+
+                                    <p class="card-title">
+                                        @veiculo.IdVersaoNavigation.IdModeloNavigation.NmModelo @veiculo.IdVersaoNavigation.NmVersao
+                                        @veiculo.AnoModelo
+                                    </p>
+                                    <p class="Card-">
+                                        @(veiculo.VlrVeiculo.ToString("C02"))
+                                    </p>
+                                        <a asp-area="" asp-route-IdVeiculo="@veiculo.IdVeiculo" asp-controller="Vitrine" asp-action="Detalhes" role="button" class="btn btn-success font-weight-medium rounded-pill px-4" >
+                                            Compre Agora!!
+                                        </a>
+                                    </div>
+
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                Nenhum veículo encontrado no estoque!
+                            </div>
+                        }
+                    </tbody>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>

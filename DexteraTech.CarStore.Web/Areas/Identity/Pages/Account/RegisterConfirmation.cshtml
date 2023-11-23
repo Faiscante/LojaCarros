@@ -1,0 +1,22 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    Layout = "/Areas/Identity/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Confirmar Registro";
+}
+
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+<p>
+    Forçar confirmar e-mail. <a id="confirm-link" href="@Model.EmailConfirmationUrl">Clique aqui para confirmar a conta</a>
+</p>
+    }
+    else
+    {
+<p>
+        Por favor verifique seu email para confirmar sua conta.
+</p>
+    }
+}
+

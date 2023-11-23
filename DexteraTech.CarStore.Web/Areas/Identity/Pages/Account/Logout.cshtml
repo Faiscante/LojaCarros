@@ -1,0 +1,25 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log Out";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    @{
+        <div class="alert alert-danger">
+            Deseja mesmo realizar deslogar do sistema? 
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Caso sim, clique aqui para deslogar</button>
+            </form>
+            }
+            else
+            {
+            <p>Você foi deslogado com sucesso da aplicação.</p>
+            }
+        </div>
+       
+    }
+</header>

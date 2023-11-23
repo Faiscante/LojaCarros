@@ -1,0 +1,70 @@
+﻿@model List<ModeloViewModel>
+@{
+    ViewData["Title"] = "Modelo";
+    ViewData["SubTitle"] = "Listagem";
+    ViewData["AddUrlAction"] = Url.Action("Editar", "Modelo");
+}
+
+<body>
+<div class="text-center">
+
+    <div class="row">
+        <div class="col-sm-12 align-self-center">
+  @if (Model.Any())
+                    {
+            <div class="table-responsive">
+                <table class="table user-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Carroceria</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                  
+                        @foreach (ModeloViewModel modelo in Model)
+                        {
+                            <tr>
+                                <td>@modelo.IdMarcaNavigation.NmMarca</td>
+                                <td>@modelo.IdCarroceriaNavigation.NmCarroceria</td>
+                                <td>@modelo.NmModelo</td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="btn-group btn-group-sm float-end" role="group">
+                                            <a role="button" class="btn btn-primary" asp-route-IdModelo="@modelo.IdModelo" asp-controller="Modelo" asp-action="Editar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-data-bs-title="Alterar">
+                                                <i class="mdi mdi-grease-pencil"></i>
+                                            </a>
+                                            <a role="button" class="btn btn-danger" onclick="ModeloIndexView.excluirModeloConfirm($(this))" data-idmodelo="@modelo.IdModelo" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir">
+                                                <i class="mdi mdi-delete-forever"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        Nenhum modelo cadastrado!
+                    </div>
+                }
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/views/modelo/index.js"></script>
+    <script>
+        ModeloIndexView.urlExcluirModelo = '@Url.Action("ExcluirModelo")';
+    </script>
+}
+
+</body>
